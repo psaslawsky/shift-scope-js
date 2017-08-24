@@ -155,7 +155,18 @@ export default class ScopeAnalyzer extends MonoidalReducer {
   }
 
   reduceIdentifierExpression(node) {
-    return new ScopeState({freeIdentifiers: new MultiMap([[node.name, new Reference(node, Accessibility.READ)]])});
+    let accessibility;
+    switch (node.operator) {
+        case "delete":
+        case "typeof":
+        case "void":
+            accessibility = Accessibility.NONE;
+            break;
+        default:
+            accessibility = Accessibility.READ;
+            break;
+    }
+    return new ScopeState({freeIdentifiers: new MultiMap([[node.name, new Reference(node, accessibility)]])});
   }
 
   reduceIfStatement(node, {test, consequent, alternate}) {

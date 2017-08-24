@@ -42,6 +42,9 @@ function functionNameA(parameter) {
   (function functionNameC() {
     functionNameC = 0;
   });
+
+  var aVar;
+  delete aVar;
 }
 `;
 

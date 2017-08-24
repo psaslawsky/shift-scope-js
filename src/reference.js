@@ -22,6 +22,7 @@ export class Accessibility {
   }
 }
 
+Accessibility.NONE = new Accessibility(false, false);
 Accessibility.READ = new Accessibility(true, false);
 Accessibility.WRITE = new Accessibility(false, true);
 Accessibility.READWRITE = new Accessibility(true, true);
